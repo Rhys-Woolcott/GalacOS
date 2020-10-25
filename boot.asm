@@ -30,6 +30,10 @@ pop ax
 mov al, 1
 mov cl, 2
 
+call testA20
+mov dx, ax
+call printh
+
 mov dx, [0x7c00 + 510]
 call printh
 
@@ -41,6 +45,7 @@ jmp $ ; Infinite loop
 %include "./functions/printf.asm"
 %include "./functions/printh.asm"
 %include "./functions/read_data.asm"
+%include "./functions/testA20.asm"
 
 di_err_MSG: db "There was an error reading the disk. Please check your hardware", 0x0a, 0x0d, 0 ; Disk Error Message
 n_sect: db "sup", 0x0a, 0x0d, 0 ; Disk Error Message
