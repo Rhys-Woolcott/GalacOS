@@ -48,7 +48,7 @@ jmp $ ; Infinite loop
 %include "./functions/testA20.asm"
 
 di_err_MSG: db "There was an error reading the disk. Please check your hardware", 0x0a, 0x0d, 0 ; Disk Error Message
-n_sect: db "sup", 0x0a, 0x0d, 0 ; Disk Error Message
+n_sect: db "Welcome To GalacOS Where Possibilities are ENDLESS. This operating system is far from complete so expect bugs around every corner.", 0x0a, 0x0d, 0 ; Disk Error Message
 
 times 510-($-$$) db 0 ; Padding
 dw 0xaa55 ; Magic Number
