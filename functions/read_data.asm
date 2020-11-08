@@ -1,25 +1,22 @@
-read_data: ; Read Disk
-    pusha
-    mov ah, 0x02
-    mov dl, 0x80
-    mov ch, 0
-    mov dh, 0
-    ;mov al, 1
-    ;mov cl, 2
+readDisk:
+  pusha
 
-    push bx
-    mov bx, 0
-    mov es, bx
-    pop bx
-    mov bx, 0x7c00 + 512
+  ; we assume al and cl are set outside this function
 
-    int 0x13
+  mov ah, 0x02		; read sectors from drive function
+;  mov dl, 0x00		; select drive medium (floppy or hdd/sdd)
+  mov ch, 0		; select start cylinder
+  mov dh, 0		; select start head
 
-    jc disk_err
-    popa
-    ret
+  ;mov bx, 0x7e00	; set offset address (sector 2 address)
 
-    disk_err:
-        mov si, di_err_MSG
-        call printf
-        jmp $ ; Hang to prevent further issues.
+  int 0x13		; call interrupt
+
+  jc disk_err		; if carry flag is set, jmp to disk_err
+  popa
+  ret
+
+  disk_err:
+    mov si, DISK_ERR_MSG
+    call printf
+    jmp $
