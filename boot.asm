@@ -143,10 +143,9 @@ TEST_STR: db 'You are in the second sector.', 0x0a, 0x0d, 0
 
 [bits 64]
 LongMode:
-
 VID_MEM equ 0xb8000
 mov edi, VID_MEM
-mov rax, 0x8f208f208f208f20
+mov rax, 0x000000000000000000
 mov ecx, 500
 rep stosq
 
@@ -157,8 +156,7 @@ times 512-($-$$-512) db 0
 ;times 1048576 - ($-($$ + 512)) db 0 ; precise padding to fill up 1MB
 
 Kernel:
-
-mov rax, 0x1f6f1f6c1f6c1f651f48
+mov rax, 0x0f200f3e0f5c0f3a0f43 ; C:\>
 mov [VID_MEM], rax
 
 hlt
