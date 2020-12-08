@@ -1,5 +1,8 @@
 # OS Notes
 ---
+## INDEX
+- [Mouse control](#mouse-control)
+---
 ## Mouse Control
 - 3 - 4 byte packets asynchronously on port `0x60` (keyboard port) - Does not trigger IRQ1, instead IRQ12
 - occasionally poll bit number 0 (value=1) of port 0x64
